@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:plant_app/home/home_screen.dart';
 import 'package:plant_app/home/myplants.dart';
+import 'package:plant_app/home/profile.dart';
+import 'package:plant_app/home/statistics.dart';
 
 import '../constants.dart';
 
@@ -43,7 +44,7 @@ class NavBar extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                //Berpindah ke halaman profil
+                //Berpindah ke halaman Home
                 MaterialPageRoute(builder: (context) => const HomeScreen()),
               );
             },
@@ -53,8 +54,8 @@ class NavBar extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                //Berpindah ke halaman profil
-                MaterialPageRoute(builder: (context) => const PlantHomePage()),
+                //Berpindah ke halaman Statistics
+                MaterialPageRoute(builder: (context) => const StatisticsScreen()),
               );
             },
           ),
@@ -63,7 +64,7 @@ class NavBar extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                //Berpindah ke halaman profil
+                //Berpindah ke halaman MyPlant
                 MaterialPageRoute(builder: (context) => const PlantHomePage()),
               );
             },
@@ -71,7 +72,11 @@ class NavBar extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.settings_rounded, color: desaturate(kPrimaryColor)),
             onPressed: () {
-
+              Navigator.push(
+                context,
+                //Berpindah ke halaman MyPlant
+                MaterialPageRoute(builder: (context) => const ProfilePage()),
+              );
             },
           ),
         ],
