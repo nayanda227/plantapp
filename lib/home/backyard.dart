@@ -1,32 +1,33 @@
 import 'package:flutter/material.dart';
-import '../../constants.dart';
+import 'package:plant_app/constants.dart';
+import 'package:plant_app/home/home_screen.dart';
 import 'package:plant_app/home/rooftop.dart';
-import 'package:plant_app/home/backyard.dart';
+import 'package:plant_app/navbar.dart';
 
-class Body extends StatefulWidget {
-  const Body({super.key});
+class BackyardPage extends StatefulWidget {
+  const BackyardPage({super.key});
 
   @override
-  State<Body> createState() => _BodyState();
+  State<BackyardPage> createState() => _BackyardState();
 }
 
-class _BodyState extends State<Body> {
-  String selectedFilter = "Garden";
+class _BackyardState extends State<BackyardPage> {
+  String selectedFilter = "Backyard";
 
   void onFilterTap(String filterName) {
     setState(() {
       selectedFilter = filterName;
     });
 
-    if (filterName == "Rooftop") {
+    if (filterName == "Garden") {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+      );
+    } else if (filterName == "Rooftop") {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => RooftopPage()),
-      );
-    } else if (filterName == "Backyard") {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => BackyardPage()),
       );
     } else if (filterName == "Add") {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -64,45 +65,13 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: NavBar(),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header
-              Row(
-                children: [
-                  const CircleAvatar(
-                    backgroundImage: AssetImage("assets/images/vernon.jpeg"),
-                  ),
-                  const SizedBox(width: 10),
-                  const Expanded(
-                    child: Text.rich(
-                      TextSpan(
-                        text: "Welcome, ",
-                        style: TextStyle(fontSize: 16, color: kTextColor),
-                        children: [
-                          TextSpan(
-                            text: "Vernon",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(6),
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: kSecondaryColor,
-                    ),
-                    child: const Icon(Icons.more_horiz, color: kBackgroundColor),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-
               // Filter Buttons
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -130,7 +99,7 @@ class _BodyState extends State<Body> {
                         Expanded(
                           child: _StatItemRow(
                             icon: Icons.thermostat,
-                            value: "25°C",
+                            value: "28°C",
                             label: "Temperature",
                           ),
                         ),
@@ -138,7 +107,7 @@ class _BodyState extends State<Body> {
                         Expanded(
                           child: _StatItemRow(
                             icon: Icons.water_drop,
-                            value: "55%",
+                            value: "95%",
                             label: "Water Level",
                           ),
                         ),
@@ -150,7 +119,7 @@ class _BodyState extends State<Body> {
                         Expanded(
                           child: _StatItemRow(
                             icon: Icons.water,
-                            value: "70%",
+                            value: "80%",
                             label: "Humidity",
                           ),
                         ),
@@ -158,7 +127,7 @@ class _BodyState extends State<Body> {
                         Expanded(
                           child: _StatItemRow(
                             icon: Icons.local_florist,
-                            value: "2",
+                            value: "4",
                             label: "Plants",
                           ),
                         ),
@@ -174,16 +143,34 @@ class _BodyState extends State<Body> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   PlantCard(
-                    name: "Janda Bolong Plant",
-                    imageUrl: "assets/images/pohon1.png",
-                    frequency: "every 1 week",
-                    humidity: "78%",
+                    name: "Sereh Plant",
+                    imageUrl: "assets/images/img.png",
+                    frequency: "every day",
+                    humidity: "90%",
                   ),
                   PlantCard(
                     name: "Kaktus Plant",
-                    imageUrl: "assets/images/pohon 2.png",
+                    imageUrl: "assets/images/1.png",
                     frequency: "every 1 week",
                     humidity: "78%",
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  PlantCard(
+                    name: "Something Plant",
+                    imageUrl: "assets/images/4.png",
+                    frequency: "every week",
+                    humidity: "80%",
+                  ),
+                  PlantCard(
+                    name: "Bamboo Plant",
+                    imageUrl: "assets/images/image 5.png",
+                    frequency: "every day",
+                    humidity: "88%",
                   ),
                 ],
               ),
