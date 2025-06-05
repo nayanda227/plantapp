@@ -8,7 +8,7 @@ class StatisticsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:kBackgroundColor, // dari constants.dart
+      backgroundColor: kBackgroundColor, // dari constants.dart
       bottomNavigationBar: const NavBar(),
       body: SafeArea(
         child: Padding(
@@ -103,7 +103,8 @@ class OverviewCard extends StatelessWidget {
 
                 // Box Conditions Good
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
                     color: const Color(0xFFF3F4F6),
                     borderRadius: BorderRadius.circular(40),
@@ -111,7 +112,8 @@ class OverviewCard extends StatelessWidget {
                   child: const Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.location_searching_outlined, color: kEmoColor, size: 14),
+                      Icon(Icons.location_searching_outlined,
+                          color: kEmoColor, size: 14),
                       SizedBox(width: 5),
                       Text(
                         "Conditions",
@@ -131,17 +133,22 @@ class OverviewCard extends StatelessWidget {
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text("25°C", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-                        Text("Temperature", style: TextStyle(fontSize: 12)),
+                      children: [
+                        const Text("25°C",
+                            style: TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.bold)),
+                        const Text("Temperature",
+                            style: TextStyle(fontSize: 12)),
                       ],
                     ),
                     SizedBox(width: 40),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text("70%", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-                        Text("Humidity", style: TextStyle(fontSize: 12)),
+                      children: [
+                        const Text("70%",
+                            style: TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.bold)),
+                        const Text("Humidity", style: TextStyle(fontSize: 12)),
                       ],
                     ),
                   ],
@@ -188,7 +195,8 @@ class WaterLevelCard extends StatelessWidget {
 
                 // Box Conditions Good
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
                     color: const Color(0xFFF3F4F6),
                     borderRadius: BorderRadius.circular(40),
@@ -212,17 +220,21 @@ class WaterLevelCard extends StatelessWidget {
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text("180 ml", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-                        Text("Water", style: TextStyle(fontSize: 12)),
+                      children: [
+                        const Text("180 ml",
+                            style: TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.bold)),
+                        const Text("Water", style: TextStyle(fontSize: 12)),
                       ],
                     ),
                     SizedBox(width: 40),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text("45%", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-                        Text("Filled", style: TextStyle(fontSize: 12)),
+                      children: [
+                        const Text("45%",
+                            style: TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.bold)),
+                        const Text("Filled", style: TextStyle(fontSize: 12)),
                       ],
                     ),
                   ],
@@ -257,7 +269,7 @@ class PlantsCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   "Plants",
                   style: TextStyle(
                     fontSize: 20,
@@ -265,23 +277,25 @@ class PlantsCard extends StatelessWidget {
                     color: kTextColor,
                   ),
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: 10),
 
                 // Water and Filled
-                const Row(
+                Row(
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text("2", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-                        Text("Plants", style: TextStyle(fontSize: 12)),
+                      children: [
+                        const Text("2",
+                            style: TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.bold)),
+                        const Text("Plants", style: TextStyle(fontSize: 12)),
                       ],
                     ),
                   ],
                 ),
               ],
             ),
-            const Icon(Icons.local_florist_outlined, color: kEmoColor, size: 100),
+            Icon(Icons.local_florist_outlined, color: kEmoColor, size: 100),
           ],
         ),
       ),

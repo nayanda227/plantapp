@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:plant_app/models/location_status.dart';
+import 'package:plant_app/services/api_location_status.dart';
 import '../../constants.dart';
 import 'package:plant_app/home/rooftop.dart';
 import 'package:plant_app/home/backyard.dart';
@@ -11,6 +15,26 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  late Future<LocationStatus> _futureStatus;
+  late Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _futureStatus = ApiLocationStatus.fetchLocationStatus();
+    _timer = Timer.periodic(const Duration(minutes: 1), (timer) {
+      setState(() {
+        _futureStatus = ApiLocationStatus.fetchLocationStatus();
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
   String selectedFilter = "Garden";
 
   void onFilterTap(String filterName) {
@@ -21,12 +45,12 @@ class _BodyState extends State<Body> {
     if (filterName == "Rooftop") {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => RooftopPage()),
+        MaterialPageRoute(builder: (context) => const RooftopPage()),
       );
     } else if (filterName == "Backyard") {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => BackyardPage()),
+        MaterialPageRoute(builder: (context) => const BackyardPage()),
       );
     } else if (filterName == "Add") {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -49,11 +73,13 @@ class _BodyState extends State<Body> {
         child: Row(
           children: [
             if (icon != null)
-              Icon(icon, size: 16, color: isSelected ? Colors.white : kPrimaryColor),
+              Icon(icon,
+                  size: 16, color: isSelected ? Colors.white : kPrimaryColor),
             if (icon != null) const SizedBox(width: 5),
             Text(
               label,
-              style: TextStyle(color: isSelected ? Colors.white : kPrimaryColor),
+              style:
+                  TextStyle(color: isSelected ? Colors.white : kPrimaryColor),
             ),
           ],
         ),
@@ -97,7 +123,8 @@ class _BodyState extends State<Body> {
                       shape: BoxShape.circle,
                       color: kSecondaryColor,
                     ),
-                    child: const Icon(Icons.more_horiz, color: kBackgroundColor),
+                    child:
+                        const Icon(Icons.more_horiz, color: kBackgroundColor),
                   ),
                 ],
               ),
@@ -116,56 +143,63 @@ class _BodyState extends State<Body> {
               const SizedBox(height: 20),
 
               // Stats Panel
-              Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: kPrimaryColor),
-                ),
-                child: const Column(
-                  children: [
-                    Row(
+              FutureBuilder<LocationStatus>(
+                future: _futureStatus,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting)
+                    return Center(child: CircularProgressIndicator());
+
+                  if (snapshot.hasError)
+                    return Center(child: Text('Error: ${snapshot.error}'));
+
+                  final status = snapshot.data!;
+                  return SingleChildScrollView(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
                       children: [
-                        Expanded(
-                          child: _StatItemRow(
-                            icon: Icons.thermostat,
-                            value: "25°C",
-                            label: "Temperature",
-                          ),
+                        _StatItemRow(
+                          icon: Icons.thermostat,
+                          value: '${status.temperature} °C',
+                          label: 'Temperature',
                         ),
-                        SizedBox(width: 10),
-                        Expanded(
-                          child: _StatItemRow(
-                            icon: Icons.water_drop,
-                            value: "55%",
-                            label: "Water Level",
-                          ),
+                        _StatItemRow(
+                          icon: Icons.water_drop,
+                          value: '${status.humidity} %',
+                          label: 'Humidity',
                         ),
-                      ],
+                        _StatItemRow(
+                          icon: Icons.opacity,
+                          value: '${status.waterLevel} %',
+                          label: 'Water Level',
+                        ),
+                        _StatItemRow(
+                          icon: Icons.grass,
+                          value: '${status.soilMoisture} %',
+                          label: 'Soil Moisture',
+                        ),
+                        _StatItemRow(
+                          icon: Icons.wb_sunny,
+                          value: '${status.lightIntensity} lux',
+                          label: 'Light Intensity',
+                        ),
+                        _StatItemRow(
+                          icon: Icons.science,
+                          value: '${status.phLevel}',
+                          label: 'pH Level',
+                        ),
+                        _StatItemRow(
+                          icon: Icons.local_florist,
+                          value: '${status.plants}',
+                          label: 'Plants',
+                        ),
+                      ]
+                          .map((e) => Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 4),
+                              child: e))
+                          .toList(),
                     ),
-                    SizedBox(height: 12),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: _StatItemRow(
-                            icon: Icons.water,
-                            value: "70%",
-                            label: "Humidity",
-                          ),
-                        ),
-                        SizedBox(width: 10),
-                        Expanded(
-                          child: _StatItemRow(
-                            icon: Icons.local_florist,
-                            value: "2",
-                            label: "Plants",
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                  );
+                },
               ),
               const SizedBox(height: 20),
 
@@ -208,7 +242,8 @@ class _BodyState extends State<Body> {
                           shape: BoxShape.circle,
                           color: kSecondaryColor,
                         ),
-                        child: const Icon(Icons.local_florist, size: 30, color: kTextColor),
+                        child: const Icon(Icons.local_florist,
+                            size: 30, color: kTextColor),
                       ),
                       const SizedBox(height: 12),
                       const Text(

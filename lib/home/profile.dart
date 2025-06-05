@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_app/constants.dart';
-import 'package:plant_app/home/Updateprofile.dart';
+import 'package:plant_app/home/update_profile.dart';
 import 'package:plant_app/navbar.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -11,7 +11,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,14 +29,13 @@ class _ProfilePageState extends State<ProfilePage> {
           children: [
             Row(
               children: [
-                CircleAvatar(
-                  radius: 40,
-                  backgroundImage: AssetImage("assets/images/vernon.jpeg")
-                ),
+                const CircleAvatar(
+                    radius: 40,
+                    backgroundImage: AssetImage("assets/images/vernon.jpeg")),
                 const SizedBox(width: 10),
-                Column(
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
                       'Vernon Chwe Hansol',
                       style: TextStyle(

@@ -22,7 +22,8 @@ class UpdateProfilePage extends StatelessWidget {
         ),
         title: const Text(
           'Your profile',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),
+          style: TextStyle(
+              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),
         ),
         centerTitle: false,
       ),
@@ -32,14 +33,14 @@ class UpdateProfilePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
+              const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     'Profile Image',
                     style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -49,22 +50,23 @@ class UpdateProfilePage extends StatelessWidget {
                           'https://pannkpop.com/wp-content/uploads/2023/10/BTS-Jungkooks-solo-album-GOLDEN-concept-photo-SOLID-4-768x751.jpg',
                         ),
                       ),
-                      const SizedBox(width: 8),
+                      SizedBox(width: 8),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children: [
                             Text(
                               'Put your best pic! Everyone will be able to see it.',
-                              style: TextStyle(color: Colors.grey, fontSize: 12),
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 12),
                             ),
                           ],
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 8),
-                  const Text(
+                  SizedBox(height: 8),
+                  Text(
                     'Change',
                     style: TextStyle(
                         color: kPrimaryColor,
@@ -133,14 +135,16 @@ class UpdateProfilePage extends StatelessWidget {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
             ),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
           ),
         ),
       ],
     );
   }
 
-  Widget _buildDropdownField(String label, List<String> options, String selectedValue) {
+  Widget _buildDropdownField(
+      String label, List<String> options, String selectedValue) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -156,7 +160,8 @@ class UpdateProfilePage extends StatelessWidget {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
             ),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
           ),
           items: options.map((String value) {
             return DropdownMenuItem<String>(
@@ -199,14 +204,15 @@ class UpdateProfilePage extends StatelessWidget {
                 );
                 if (pickedDate != null) {
                   dateController.text =
-                  "${pickedDate.day}-${pickedDate.month}-${pickedDate.year}";
+                      "${pickedDate.day}-${pickedDate.month}-${pickedDate.year}";
                 }
               },
             ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
             ),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
           ),
         ),
       ],

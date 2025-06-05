@@ -22,12 +22,12 @@ class _RooftopState extends State<RooftopPage> {
     if (filterName == "Garden") {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
       );
     } else if (filterName == "Backyard") {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => BackyardPage()),
+        MaterialPageRoute(builder: (context) => const BackyardPage()),
       );
     } else if (filterName == "Add") {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -50,11 +50,13 @@ class _RooftopState extends State<RooftopPage> {
         child: Row(
           children: [
             if (icon != null)
-              Icon(icon, size: 16, color: isSelected ? Colors.white : kPrimaryColor),
+              Icon(icon,
+                  size: 16, color: isSelected ? Colors.white : kPrimaryColor),
             if (icon != null) const SizedBox(width: 5),
             Text(
               label,
-              style: TextStyle(color: isSelected ? Colors.white : kPrimaryColor),
+              style:
+                  TextStyle(color: isSelected ? Colors.white : kPrimaryColor),
             ),
           ],
         ),
@@ -65,7 +67,7 @@ class _RooftopState extends State<RooftopPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: NavBar(),
+      bottomNavigationBar: const NavBar(),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(20),
@@ -195,7 +197,8 @@ class _RooftopState extends State<RooftopPage> {
                           shape: BoxShape.circle,
                           color: kSecondaryColor,
                         ),
-                        child: const Icon(Icons.local_florist, size: 30, color: kTextColor),
+                        child: const Icon(Icons.local_florist,
+                            size: 30, color: kTextColor),
                       ),
                       const SizedBox(height: 12),
                       const Text(
@@ -280,6 +283,7 @@ class PlantCard extends StatelessWidget {
   final String humidity;
 
   const PlantCard({
+    super.key,
     required this.name,
     required this.imageUrl,
     required this.frequency,

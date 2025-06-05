@@ -11,7 +11,8 @@ class PlantHomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: kBackgroundColor,
       body: SafeArea(
-        child: SingleChildScrollView( // <-- scroll agar anti overflow
+        child: SingleChildScrollView(
+          // <-- scroll agar anti overflow
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -35,7 +36,8 @@ class PlantHomePage extends StatelessWidget {
                         shape: BoxShape.circle,
                         color: kSecondaryColor,
                       ),
-                      child: const Icon(Icons.more_horiz, color: kBackgroundColor),
+                      child:
+                          const Icon(Icons.more_horiz, color: kBackgroundColor),
                     ),
                   ],
                 ),
@@ -143,7 +145,7 @@ class MyPlantCard extends StatelessWidget {
           // Title & Info
           // Judul
           Text(
-            '$name',
+            name,
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             overflow: TextOverflow.ellipsis,
           ),
@@ -151,10 +153,11 @@ class MyPlantCard extends StatelessWidget {
 
           Row(
             children: [
-              Icon(Icons.location_on_outlined, color: kTextColor, size: 14),
+              const Icon(Icons.location_on_outlined,
+                  color: kTextColor, size: 14),
               const SizedBox(width: 4),
               Text(
-                '$location',
+                location,
                 style: const TextStyle(color: kTextColor, fontSize: 12),
                 overflow: TextOverflow.ellipsis,
               ),
@@ -164,10 +167,11 @@ class MyPlantCard extends StatelessWidget {
 // Air
           Row(
             children: [
-              Icon(Icons.water_drop_outlined, color: kTextColor, size: 14),
+              const Icon(Icons.water_drop_outlined,
+                  color: kTextColor, size: 14),
               const SizedBox(width: 4),
               Text(
-                '$water',
+                water,
                 style: const TextStyle(color: kTextColor, fontSize: 12),
                 overflow: TextOverflow.ellipsis,
               ),
@@ -175,13 +179,13 @@ class MyPlantCard extends StatelessWidget {
           ),
           const SizedBox(height: 10),
 
-
           // Button
           ElevatedButton(
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const PlantDetailsPage()),
+                MaterialPageRoute(
+                    builder: (context) => const PlantDetailsPage()),
               );
             },
             style: ElevatedButton.styleFrom(
@@ -226,7 +230,6 @@ class ExplorePlant extends StatelessWidget {
             ),
           ),
         ),
-
         const SizedBox(height: 10),
         const Text(
           'Bamboo',
